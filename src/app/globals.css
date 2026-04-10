@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #f6f0e6;
+  --canvas-deep: #e5d5be;
+  --ink: #1d2a2d;
+  --muted: #5f6e6a;
+  --line: #b7a891;
+  --accent: #2d8a66;
+  --accent-strong: #1f664b;
+}
+
+@theme inline {
+  --color-background: var(--canvas);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-space-grotesk);
+}
+
+.font-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+body {
+  color: var(--ink);
+  font-family: var(--font-space-grotesk), "Trebuchet MS", sans-serif;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(45, 138, 102, 0.18), transparent 35%),
+    radial-gradient(circle at 88% 88%, rgba(226, 152, 74, 0.18), transparent 35%),
+    linear-gradient(135deg, var(--canvas) 0%, #f3e6d5 45%, var(--canvas-deep) 100%);
+}
+
+.glass-card {
+  position: relative;
+  padding: 2rem;
+  border: 1px solid rgba(126, 106, 72, 0.3);
+  border-radius: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.45));
+  box-shadow:
+    0 45px 100px rgba(35, 20, 5, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.ambient {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(30px);
+  z-index: -1;
+}
+
+.ambient-one {
+  width: 17rem;
+  height: 17rem;
+  top: 10%;
+  left: 4%;
+  background: rgba(45, 138, 102, 0.24);
+  animation: drift 9s ease-in-out infinite;
+}
+
+.ambient-two {
+  width: 14rem;
+  height: 14rem;
+  right: 8%;
+  bottom: 12%;
+  background: rgba(231, 147, 58, 0.24);
+  animation: drift 11s ease-in-out infinite reverse;
+}
+
+.control-chip {
+  border: 1px solid color-mix(in oklab, var(--ink) 15%, transparent);
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--ink);
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 1rem 1.25rem;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+
+.control-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(18, 36, 44, 0.12);
+}
+
+.control-chip-accent {
+  background: linear-gradient(120deg, var(--accent), #3ea57d 55%, #8fd0b5);
+  border-color: transparent;
+  color: #f4fffa;
+}
+
+.brew-button {
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  background: linear-gradient(120deg, var(--ink), #334b52);
+  color: #f3f6f6;
+  padding: 0.95rem 1.5rem;
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+
+.brew-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(16, 29, 34, 0.24);
+  background: linear-gradient(120deg, var(--accent-strong), var(--accent));
+}
+
+@keyframes drift {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(0.5rem, -0.5rem) scale(1.03);
+  }
+}
+
+@media (max-width: 640px) {
+  .glass-card {
+    padding: 1.1rem;
+    border-radius: 1.4rem;
+  }
+
+  .control-chip {
+    font-size: 1.25rem;
+  }
+
+  .brew-button {
+    width: 100%;
+    font-size: 1.8rem;
+  }
+}
