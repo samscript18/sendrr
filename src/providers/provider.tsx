@@ -13,7 +13,6 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
 	const [config, setConfig] = useState<ReturnType<typeof getConfig> | null>(null);
 
 	useEffect(() => {
-		console.log(getConfig());
 		setConfig(getConfig());
 	}, []);
 
