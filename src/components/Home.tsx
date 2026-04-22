@@ -1,6 +1,5 @@
 "use client";
 
-import { config } from "@/configs/config";
 import { chainsToTSender, erc20Abi, tsenderAbi } from "@/configs/contract";
 import { formatTokenValue, formatWhole } from "@/utils";
 import { calculateTotal } from "@/utils/calculateTotal/calculateTotal";
@@ -8,7 +7,7 @@ import { readContract, waitForTransactionReceipt } from "@wagmi/core";
 import { useQuery } from "@tanstack/react-query";
 import { isAddress } from "viem";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useAccount, useChainId, useWriteContract } from "wagmi";
+import { useAccount, useChainId, useConfig, useWriteContract } from "wagmi";
 import WalletControls from "./ui/wallet-controls";
 import { TxPhase } from "@/types";
 
@@ -29,6 +28,7 @@ const Home = () => {
 	const [txMessage, setTxMessage] = useState<string>("");
 	const chainId = useChainId();
 	const account = useAccount();
+	const config = useConfig();
 	const total: bigint = useMemo(() => calculateTotal(amounts), [amounts]);
 	const { writeContractAsync } = useWriteContract();
 
